@@ -1,9 +1,10 @@
 import { Dimensions, SafeAreaView, StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 const HEIGHT = Dimensions.get('window').height
 const WIDTH = Dimensions.get('window').width
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
+import { NavContext } from '../../App';
 
 const tab = [, 11, 1, 1, , 1, 1, 1]
 
@@ -16,6 +17,14 @@ const PhoneAuth2 = ({navigation, route}) => {
     const [chiffre6, setChiffre6] = React.useState("")
     const [validFormNumber, setValidFormNumber] = React.useState(false)
 
+    const {validPhone,setValidPhone} = useContext(NavContext)
+    
+    function suite(){
+        const tab=[chiffre1, chiffre2,chiffre3,chiffre4,chiffre5, chiffre6]
+        //dispatch verfier phone
+        setValidPhone(tab)
+        navigation.navigate(newLocal)
+    }
     const newLocal = "EmailAuth1";
 
     return (
@@ -105,7 +114,7 @@ const PhoneAuth2 = ({navigation, route}) => {
                 <View style={{ marginTop: 70 }}>
                     <Text style={{ fontWeight: "500", color: "gray" }}></Text>
                 </View>
-                <TouchableOpacity onPress={()=>navigation.navigate(newLocal)}  style={{ height: 50, width: "70%", backgroundColor: validFormNumber ? '#F63A6E' : "lightgray", alignSelf: "center", marginTop: 70, alignContent: "center", alignItems: "center", borderRadius: 25 }}>
+                <TouchableOpacity onPress={()=>suite()}  style={{ height: 50, width: "70%", backgroundColor: validFormNumber ? '#F63A6E' : "lightgray", alignSelf: "center", marginTop: 70, alignContent: "center", alignItems: "center", borderRadius: 25 }}>
                     <Text style={{ fontSize: 22, fontWeight: "bold", textAlign: "center", color: "white", marginTop: 12, alignSelf: "center" }}>SUIVANT</Text>
                 </TouchableOpacity>
             </View>

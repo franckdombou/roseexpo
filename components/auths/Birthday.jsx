@@ -1,11 +1,12 @@
 import { Dimensions, SafeAreaView, StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 const HEIGHT = Dimensions.get('window').height
 const WIDTH = Dimensions.get('window').width
 import { Ionicons } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
+// import { AntDesign } from '@expo/vector-icons';
+import { NavContext } from '../../App';
 
-const tab = [, 11, 1, 1, , 1, 1, 1]
+// const tab = [1, 11, 1, 1, , 1, 1, 1]
 
 const Birthday = ({navigation, route}) => {
     const [chiffre1, setChiffre1] = React.useState("")
@@ -14,8 +15,18 @@ const Birthday = ({navigation, route}) => {
     const [chiffre4, setChiffre4] = React.useState("")
     const [chiffre5, setChiffre5] = React.useState("")
     const [chiffre6, setChiffre6] = React.useState("")
+    const [chiffre7, setChiffre7] = React.useState("")
+    const [chiffre8, setChiffre8] = React.useState("")
     const [validFormNumber, setValidFormNumber] = React.useState(false)
 
+    const {dateNaissance, setDateNaissance}= useContext(NavContext)
+
+    function suite(){
+        const tab=[chiffre1, chiffre2,chiffre3,chiffre4,chiffre5, chiffre6,chiffre7,chiffre8]
+        //dispatch verfier phone
+        setDateNaissance(tab)
+        navigation.navigate(newLocal)
+    }
   const newLocal = "Genre";
 
     return (
@@ -39,8 +50,8 @@ const Birthday = ({navigation, route}) => {
 
                     />
                     <TextInput
-                        value={chiffre1}
-                        onChangeText={setChiffre1}
+                        value={chiffre2}
+                        onChangeText={setChiffre2}
                         style={{ width: 25, fontSize: 20, textAlign: "center", borderBottomWidth: 3 }}
                         keyboardType="numeric"
                         placeholder="Y"
@@ -48,8 +59,8 @@ const Birthday = ({navigation, route}) => {
 
                     />
                     <TextInput
-                        value={chiffre1}
-                        onChangeText={setChiffre1}
+                        value={chiffre3}
+                        onChangeText={setChiffre3}
                         style={{ width: 25, fontSize: 20, textAlign: "center", borderBottomWidth: 3 }}
                         keyboardType="numeric"
                         placeholder="Y"
@@ -57,8 +68,8 @@ const Birthday = ({navigation, route}) => {
 
                     />
                     <TextInput
-                        value={chiffre1}
-                        onChangeText={setChiffre1}
+                        value={chiffre4}
+                        onChangeText={setChiffre4}
                         style={{ width: 25, fontSize: 20, textAlign: "center", borderBottomWidth: 3 }}
                         keyboardType="numeric"
                         placeholder="Y"
@@ -68,8 +79,8 @@ const Birthday = ({navigation, route}) => {
                     <Text style={{ fontSize: 20, color: "gray", fontWeight: "bold" }}>/</Text>
 
                     <TextInput
-                        value={chiffre1}
-                        onChangeText={setChiffre1}
+                        value={chiffre5}
+                        onChangeText={setChiffre5}
                         style={{ width: 25, fontSize: 20, textAlign: "center", borderBottomWidth: 3 }}
                         keyboardType="numeric"
                         placeholder="M"
@@ -77,8 +88,8 @@ const Birthday = ({navigation, route}) => {
 
                     />
                     <TextInput
-                        value={chiffre1}
-                        onChangeText={setChiffre1}
+                        value={chiffre6}
+                        onChangeText={setChiffre6}
                         style={{ width: 25, fontSize: 20, textAlign: "center", borderBottomWidth: 3 }}
                         keyboardType="numeric"
                         placeholder="M"
@@ -90,8 +101,8 @@ const Birthday = ({navigation, route}) => {
                     <Text style={{ fontSize: 20, color: "gray", fontWeight: "bold" }}>/</Text>
 
                     <TextInput
-                        value={chiffre1}
-                        onChangeText={setChiffre1}
+                        value={chiffre7}
+                        onChangeText={setChiffre7}
                         style={{ width: 25, fontSize: 20, textAlign: "center", borderBottomWidth: 3 }}
                         keyboardType="numeric"
                         placeholder="D"
@@ -99,8 +110,8 @@ const Birthday = ({navigation, route}) => {
 
                     />
                     <TextInput
-                        value={chiffre1}
-                        onChangeText={setChiffre1}
+                        value={chiffre8}
+                        onChangeText={setChiffre8}
                         style={{ width: 25, fontSize: 20, textAlign: "center", borderBottomWidth: 3 }}
                         keyboardType="numeric"
                         placeholder="D"
@@ -115,7 +126,7 @@ const Birthday = ({navigation, route}) => {
                 <View style={{ marginTop: 70 }}>
                     <Text style={{ fontWeight: "500", color: "gray" }}></Text>
                 </View>
-                <TouchableOpacity onPress={()=>navigation.navigate(newLocal)} style={{ height: 50, width: "70%", backgroundColor: validFormNumber ? '#F63A6E' : "lightgray", alignSelf: "center", marginTop: 70, alignContent: "center", alignItems: "center", borderRadius: 25 }}>
+                <TouchableOpacity onPress={()=>suite()} style={{ height: 50, width: "70%", backgroundColor: validFormNumber ? '#F63A6E' : "lightgray", alignSelf: "center", marginTop: 70, alignContent: "center", alignItems: "center", borderRadius: 25 }}>
                     <Text style={{ fontSize: 22, fontWeight: "bold", textAlign: "center", color: "white", marginTop: 12, alignSelf: "center" }}>SUIVANT</Text>
                 </TouchableOpacity>
             </View>

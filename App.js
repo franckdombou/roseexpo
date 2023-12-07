@@ -11,14 +11,30 @@ import * as SplashScreen from 'expo-splash-screen';
 import NavAuth from './navigation/NavAuth';
 import TabLayout from './navigation/NavTab';
 import Example from './components/otherscreens/Example';
+import { Provider, useSelector } from 'react-redux';
+import { stare } from './store/stare';
+import { selectIsLoggedIn } from './store/authSlice';
 
-export const NavContext = createContext()
 
 const Stack = createNativeStackNavigator();
+export const NavContext = createContext()
 
 function App() {
 
   const [modalMenu, setModalMenu] = useState(false)
+  const [name, setName] = useState(false)
+  const [genre, setGenre]=useState(null)
+  const [dateNaissance, setDateNaissance]=useState([])
+  const [interet, setInteret]=useState(null)
+  const [categorieRose,setCategorieRose]=useState(null)
+  const [position, setPosition]=useState(null)
+  const [photo, setPhoto]=useState(null)
+  const [phoneNumber, setPhoneNumber] = React.useState("0")
+  const [validPhone,setValidPhone]=useState([])
+  const [email, setEmail]=useState('')
+  const [mdp, setMdp]=useState('')
+
+
 
   const [fontsLoaded] = useFonts({
     regular: require("./assets/fonts/Poppins-Regular.ttf"),
@@ -38,18 +54,30 @@ function App() {
     return null
   }
 
+  // const username = useSelector(selectUserName);
 
   return (
-    <NavContext.Provider value={{ modalMenu, setModalMenu }}>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName='navAuth' screenOptions={{ headerShown: false }}>
-          {/* <Stack.Screen name="Example" component={Example} /> */}
-          <Stack.Screen name="navAuth" component={NavAuth} />
-          <Stack.Screen name="tabLayout" component={TabLayout} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </NavContext.Provider>
+    <Provider store={stare}>
+      <NavContext.Provider value={{ modalMenu, setModalMenu,genre, setGenre,categorieRose,setCategorieRose,
+      dateNaissance, setDateNaissance,interet, setInteret,position, setPosition,photo, setPhoto,phoneNumber, 
+      setPhoneNumber,validPhone,setValidPhone,email, setEmail,mdp, setMdp,name, setName
+      }}>
+        <NavigationContainer>
+          {
+            selectIsLoggedIn ?
+              <Stack.Navigator initialRouteName='NavAuth' screenOptions={{ headerShown: false }}>
+                <Stack.Screen name="NavAuth" component={NavAuth} />
+              </Stack.Navigator>
+              :
+              <Stack.Navigator initialRouteName='tabLayout' screenOptions={{ headerShown: false }}>
+                <Stack.Screen name="tabLayout" component={TabLayout} />
+              </Stack.Navigator>
+          }
+
+        </NavigationContainer>
+      </NavContext.Provider>
+    </Provider>
   );
 }
-
+{/* <NavContext.Provider value={{ modalMenu, setModalMenu }}> */ }
 export default App;

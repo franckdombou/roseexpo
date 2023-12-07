@@ -1,16 +1,19 @@
 import { Dimensions, SafeAreaView, StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 const HEIGHT = Dimensions.get('window').height
 const WIDTH = Dimensions.get('window').width
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
+import { NavContext } from '../../App';
 
 
 const Genre = ({navigation, route}) => {
-    const [genre, setGenre] = React.useState("")
+    const [genre1, setGenre1] = React.useState("")
     const [validGenreF, setValidGenreF] = React.useState(false)
     const [validGenreH, setValidGenreH] = React.useState(false)
     const [validGenre, setValidGenre] = React.useState(false)
+
+    const {genre, setGenre} = useContext(NavContext)
 
     function selectGenre(gr){
         setGenre(gr)

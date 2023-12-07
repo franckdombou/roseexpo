@@ -1,14 +1,22 @@
 import { Dimensions, SafeAreaView, StyleSheet, Text, View, TextInput,TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 const HEIGHT = Dimensions.get('window').height
 const WIDTH = Dimensions.get('window').width
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
+import { NavContext } from '../../App';
 
 
 export default function  PhoneAuth1({navigation, route}){
-    const [phoneNumber, setPhoneNumber] = React.useState("0")
+    const {phoneNumber, setPhoneNumber} = useContext(NavContext)
     const [validFormNumber, setValidFormNumber] = React.useState(false)
+
+    function suite(){
+
+        //dispatch verifier Phone Number
+        setPhoneNumber(phoneNumber)
+        navigation.navigate(newLocal)
+    }
    // const navigation = useNavigation()
     const newLocal = "PhoneAuth2";
     return (
@@ -41,7 +49,7 @@ export default function  PhoneAuth1({navigation, route}){
                 <View style={{marginTop:70}}>
                     <Text style={{fontWeight:"500",color:"gray"}}>Nous allons te texter un code pour confirmer que c'est bien toi. Des tarifs de message et de données peuvent s'appliquer.</Text>
                 </View>
-                <TouchableOpacity onPress={()=>navigation.navigate(newLocal)}  style={{ height: 50, width: "70%", backgroundColor:validFormNumber? '#F63A6E':"lightgray", alignSelf: "center",marginTop:70,alignContent:"center",alignItems:"center",borderRadius:25 }}>
+                <TouchableOpacity onPress={()=>suite() } style={{ height: 50, width: "70%", backgroundColor:validFormNumber? '#F63A6E':"lightgray", alignSelf: "center",marginTop:70,alignContent:"center",alignItems:"center",borderRadius:25 }}>
                     <Text style={{fontSize:22,fontWeight:"bold",textAlign:"center",color:"white",marginTop:12,alignSelf:"center"}}>SUIVANT</Text>
               </TouchableOpacity>
             </View>
