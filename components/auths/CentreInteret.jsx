@@ -111,15 +111,16 @@ const CentreInteret = ({ navigation, route }) => {
             photo: []
         };
 
-        dispatch(setSignIn(user));
+        dispatch(setSignIn(user))
+        nav.navigate('tabLayout')
     }
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
             <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
                 {/** header */}
-                <View style={{ backgroundColor: "white", height: "5%", position: "absolute", top: 0, width: WIDTH, paddingLeft: 13, paddingTop: 10 }}>
+                <TouchableOpacity onPress={()=>navigation.goBack()} style={{ backgroundColor: "white", height: "5%", position: "absolute", top: 0, width: WIDTH, paddingLeft: 13, paddingTop: 10 }}>
                     <Ionicons name="ios-chevron-back" size={35} color="gray" />
-                </View>
+                </TouchableOpacity>
 
                 <View style={{ flexDirection: "column", backgroundColor: "white", height: "97%", position: "absolute", top: "5%", width: WIDTH * 0.8, paddingTop: 10 }}>
                     <Text style={{ marginLeft: 15, fontWeight: "bold", fontSize: 30 }}>Qu'est-ce qui t'intéresse?</Text>

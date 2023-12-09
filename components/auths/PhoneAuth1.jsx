@@ -23,9 +23,9 @@ export default function  PhoneAuth1({navigation, route}){
         <SafeAreaView style={{ flex:1, backgroundColor: "white",}}>
         <SafeAreaView style={{ flex:1, backgroundColor: "white"}}>
             {/** header */}
-            <View style={{ backgroundColor: "white", height: "5%", position: "absolute", top: 0, width: WIDTH, paddingLeft: 13, paddingTop: 10 }}>
+            <TouchableOpacity onPress={() => navigation.goBack()} style={{ backgroundColor: "white", height: "5%", position: "absolute", top: 0, width: WIDTH, paddingLeft: 13, paddingTop: 10 }}>
                 <Ionicons name="ios-chevron-back" size={35} color="gray" />
-            </View>
+            </TouchableOpacity>
 
             <View style={{ alignSelf: "center", flexDirection: "column", justifyContent: "flex-start", backgroundColor: "white", height: "95%", position: "absolute", top: "5%", width: WIDTH * 0.8, paddingLeft: 13, paddingTop: 10 }}>
                 <Text style={{ fontWeight: "bold", fontSize: 30 }}>Est-ce qu'on peut avoir ton numero ?</Text>
@@ -40,7 +40,7 @@ export default function  PhoneAuth1({navigation, route}){
                             onChangeText={setPhoneNumber}
                             style={{ width: WIDTH * 0.5, fontSize: 17 }}
                             keyboardType="numeric"
-                            placeholder="Entrez votre message..."
+                            placeholder="Entrez votre numero..."
                             placeholderTextColor="gray"
                         />
                     </View>
@@ -49,7 +49,7 @@ export default function  PhoneAuth1({navigation, route}){
                 <View style={{marginTop:70}}>
                     <Text style={{fontWeight:"500",color:"gray"}}>Nous allons te texter un code pour confirmer que c'est bien toi. Des tarifs de message et de données peuvent s'appliquer.</Text>
                 </View>
-                <TouchableOpacity onPress={()=>suite() } style={{ height: 50, width: "70%", backgroundColor:validFormNumber? '#F63A6E':"lightgray", alignSelf: "center",marginTop:70,alignContent:"center",alignItems:"center",borderRadius:25 }}>
+                <TouchableOpacity onPress={()=> phoneNumber.length>5 ? suite() :null } style={{ height: 50, width: "70%", backgroundColor:phoneNumber.length > 5? '#F63A6E':"lightgray", alignSelf: "center",marginTop:70,alignContent:"center",alignItems:"center",borderRadius:25 }}>
                     <Text style={{fontSize:22,fontWeight:"bold",textAlign:"center",color:"white",marginTop:12,alignSelf:"center"}}>SUIVANT</Text>
               </TouchableOpacity>
             </View>

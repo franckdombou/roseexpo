@@ -33,9 +33,11 @@ const Birthday = ({navigation, route}) => {
         <SafeAreaView style={{ flex:1, backgroundColor: "white" }}>
         <SafeAreaView style={{ flex:1, backgroundColor: "white" }}>
             {/** header */}
-            <View style={{ backgroundColor: "white", height: "5%", position: "absolute", top: 0, width: WIDTH, paddingLeft: 13, paddingTop: 10 }}>
+            <TouchableOpacity onPress={() => navigation.goBack()} style={{ backgroundColor: "white", height: "5%", position: "absolute", top: 0, width: WIDTH, paddingLeft: 13, paddingTop: 10 }}>
                 <Ionicons name="ios-chevron-back" size={35} color="gray" />
-            </View>
+            </TouchableOpacity>
+
+            
 
             <View style={{ alignSelf: "center", flexDirection: "column", justifyContent: "flex-start", backgroundColor: "white", height: "95%", position: "absolute", top: "5%", width: WIDTH * 0.8, paddingLeft: 13, paddingTop: 10 }}>
                 <Text style={{ fontWeight: "bold", fontSize: 30 }}>Quelle est ta date de naissance?</Text>
@@ -47,6 +49,7 @@ const Birthday = ({navigation, route}) => {
                         keyboardType="numeric"
                         placeholder="Y"
                         placeholderTextColor="gray"
+                        maxLength={1}
 
                     />
                     <TextInput
@@ -56,6 +59,7 @@ const Birthday = ({navigation, route}) => {
                         keyboardType="numeric"
                         placeholder="Y"
                         placeholderTextColor="gray"
+                        maxLength={1}
 
                     />
                     <TextInput
@@ -65,6 +69,7 @@ const Birthday = ({navigation, route}) => {
                         keyboardType="numeric"
                         placeholder="Y"
                         placeholderTextColor="gray"
+                        maxLength={1}
 
                     />
                     <TextInput
@@ -74,6 +79,7 @@ const Birthday = ({navigation, route}) => {
                         keyboardType="numeric"
                         placeholder="Y"
                         placeholderTextColor="gray"
+                        maxLength={1}
 
                     />
                     <Text style={{ fontSize: 20, color: "gray", fontWeight: "bold" }}>/</Text>
@@ -85,6 +91,7 @@ const Birthday = ({navigation, route}) => {
                         keyboardType="numeric"
                         placeholder="M"
                         placeholderTextColor="gray"
+                        maxLength={1}
 
                     />
                     <TextInput
@@ -94,6 +101,7 @@ const Birthday = ({navigation, route}) => {
                         keyboardType="numeric"
                         placeholder="M"
                         placeholderTextColor="gray"
+                        maxLength={1}
 
                     />
 
@@ -107,6 +115,7 @@ const Birthday = ({navigation, route}) => {
                         keyboardType="numeric"
                         placeholder="D"
                         placeholderTextColor="gray"
+                        maxLength={1}
 
                     />
                     <TextInput
@@ -116,6 +125,7 @@ const Birthday = ({navigation, route}) => {
                         keyboardType="numeric"
                         placeholder="D"
                         placeholderTextColor="gray"
+                        maxLength={1}
 
                     />
 
@@ -126,7 +136,7 @@ const Birthday = ({navigation, route}) => {
                 <View style={{ marginTop: 70 }}>
                     <Text style={{ fontWeight: "500", color: "gray" }}></Text>
                 </View>
-                <TouchableOpacity onPress={()=>suite()} style={{ height: 50, width: "70%", backgroundColor: validFormNumber ? '#F63A6E' : "lightgray", alignSelf: "center", marginTop: 70, alignContent: "center", alignItems: "center", borderRadius: 25 }}>
+                <TouchableOpacity onPress={()=> suite()} style={{ height: 50, width: "70%", backgroundColor:'#F63A6E' , alignSelf: "center", marginTop: 70, alignContent: "center", alignItems: "center", borderRadius: 25 }}>
                     <Text style={{ fontSize: 22, fontWeight: "bold", textAlign: "center", color: "white", marginTop: 12, alignSelf: "center" }}>SUIVANT</Text>
                 </TouchableOpacity>
             </View>

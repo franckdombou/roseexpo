@@ -22,14 +22,14 @@ export const NavContext = createContext()
 function App() {
 
   const [modalMenu, setModalMenu] = useState(false)
-  const [name, setName] = useState(false)
-  const [genre, setGenre]=useState(null)
+  const [name, setName] = useState("")
+  const [genre, setGenre]=useState("")
   const [dateNaissance, setDateNaissance]=useState([])
-  const [interet, setInteret]=useState(null)
-  const [categorieRose,setCategorieRose]=useState(null)
-  const [position, setPosition]=useState(null)
-  const [photo, setPhoto]=useState(null)
-  const [phoneNumber, setPhoneNumber] = React.useState("0")
+  const [interet, setInteret]=useState([])
+  const [categorieRose,setCategorieRose]=useState("")
+  const [position, setPosition]=useState("")
+  const [photo, setPhoto]=useState([])
+  const [phoneNumber, setPhoneNumber] = React.useState("")
   const [validPhone,setValidPhone]=useState([])
   const [email, setEmail]=useState('')
   const [mdp, setMdp]=useState('')
@@ -67,6 +67,7 @@ function App() {
             selectIsLoggedIn ?
               <Stack.Navigator initialRouteName='NavAuth' screenOptions={{ headerShown: false }}>
                 <Stack.Screen name="NavAuth" component={NavAuth} />
+                <Stack.Screen name="tabLayout" component={TabLayout} />
               </Stack.Navigator>
               :
               <Stack.Navigator initialRouteName='tabLayout' screenOptions={{ headerShown: false }}>

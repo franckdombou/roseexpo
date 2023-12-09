@@ -12,9 +12,9 @@ const Bienvenue = ({navigation, route}) => {
     <SafeAreaView style={{ flex:1, backgroundColor: "white" }}>
     <SafeAreaView style={{ flex:1, backgroundColor: "white" }}>
             {/** header */}
-            <View style={{ backgroundColor: "white", height: "5%", position: "absolute", top: 0, width: WIDTH, paddingLeft: 13, paddingTop: 10 }}>
+            <TouchableOpacity onPress={() => navigation.goBack()} style={{ backgroundColor: "white", height: "5%", position: "absolute", top: 0, width: WIDTH, paddingLeft: 13, paddingTop: 10 }}>
                 <Entypo name="cross" size={35} color="gray" />
-            </View>
+            </TouchableOpacity>
 
             <View style={{ alignSelf: "center", flexDirection: "column", justifyContent: "flex-start", backgroundColor: "white", height: "95%", position: "absolute", top: "5%", width: WIDTH * 0.8, paddingLeft: 13, paddingTop: 10 }}>
                 <Text style={{ fontWeight: "bold", fontSize: 30 }}>Bienvenue sur Spark.</Text>

@@ -9,6 +9,7 @@ import Birthday from '../components/auths/Birthday';
 import EmailAuth1 from '../components/auths/EmailAuth1';
 import Genre from '../components/auths/Genre';
 import CentreInteret from '../components/auths/CentreInteret';
+import Acceuil from '../components/auths/Acceuil';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,6 +17,7 @@ export default function NavAuth() {
 
   return (
     <Stack.Navigator>
+      <Stack.Screen component={Acceuil} name="Acceuil" options={{ headerShown: false }} />
       <Stack.Screen component={PhoneAuth1} name="PhoneAuth1" options={{ headerShown: false }} />
       <Stack.Screen name="PhoneAuth2" component={PhoneAuth2} options={{ headerShown: false }} />
       <Stack.Screen name="Bienvenue" component={Bienvenue} options={{ headerShown: false, }} />

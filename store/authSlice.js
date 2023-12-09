@@ -2,14 +2,14 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
     isLoggedIn: false,
-    email: null,
-    name: null,
-    genre:null,
-    dateNaissance:null,
+    email: "",
+    name: "",
+    genre:"",
+    dateNaissance:[],
     interet:[],
-    categorieRose:null,
-    position:null,
-    phoneNumber:null,
+    categorieRose:"",
+    position:"",
+    phoneNumber:"",
     photo:[]
 }
 
@@ -31,12 +31,14 @@ const authSlice = createSlice({
             state.position = action.payload.position;
             state.photo = action.payload.photo;
             state.categorieRose = action.payload.categorieRose;
+
         },
         setSignOut: (state) => {
             state.email = null;
             state.name = null;
             state.isLoggedIn = false;
-        }
+        },
+        
     }
 });
 

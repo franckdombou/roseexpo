@@ -1,4 +1,4 @@
-import { Dimensions, SafeAreaView, StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native'
+import { Dimensions, SafeAreaView, StyleSheet, Text, View, TextInput, TouchableOpacity,Alert } from 'react-native'
 import React, { useContext } from 'react'
 const HEIGHT = Dimensions.get('window').height
 const WIDTH = Dimensions.get('window').width
@@ -12,9 +12,18 @@ const EmailAuth1 = ({navigation, route}) => {
     const {mdp, setMdp} = useContext(NavContext)
     const [validFormNumber, setValidFormNumber] = React.useState(false)
 
-    function suite(){
-        navigation.navigate(newLocal)
-    }
+    const suite = () => {
+        // Expression régulière pour valider le format d'une adresse e-mail
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+        if (emailRegex.test(email)) {
+            navigation.navigate(newLocal)
+        } else {
+          Alert.alert('Erreur de validation', 'Veuillez entrer une adresse e-mail valide.');
+        }
+      };
+
+   
 
     const newLocal = "Bienvenue";
 
@@ -22,9 +31,9 @@ const EmailAuth1 = ({navigation, route}) => {
         <SafeAreaView style={{ flex:1, backgroundColor: "white" }}>
         <SafeAreaView style={{ flex:1, backgroundColor: "white" }}>
             {/** header */}
-            <View style={{ backgroundColor: "white", height: "5%", position: "absolute", top: 0, width: WIDTH, paddingLeft: 13, paddingTop: 10 }}>
+            <TouchableOpacity onPress={() => navigation.goBack()} style={{ backgroundColor: "white", height: "5%", position: "absolute", top: 0, width: WIDTH, paddingLeft: 13, paddingTop: 10 }}>
                 <Ionicons name="ios-chevron-back" size={35} color="gray" />
-            </View>
+            </TouchableOpacity>
 
             <View style={{ alignSelf: "center", flexDirection: "column", justifyContent: "flex-start", backgroundColor: "white", height: "95%", position: "absolute", top: "5%", width: WIDTH * 0.8, paddingLeft: 13, paddingTop: 10 }}>
                 <Text style={{ fontWeight: "bold", fontSize: 30, marginTop: 10 }}>Ton adresse courriel ?</Text>
@@ -53,7 +62,7 @@ const EmailAuth1 = ({navigation, route}) => {
                 <View style={{ marginTop: 70 }}>
                     <Text style={{ fontWeight: "500", color: "gray" }}></Text>
                 </View>
-                <TouchableOpacity onPress={()=>suite()} style={{ height: 50, width: "70%", backgroundColor: validFormNumber ? '#F63A6E' : "lightgray", alignSelf: "center", marginTop: 70, alignContent: "center", alignItems: "center", borderRadius: 25 }}>
+                <TouchableOpacity onPress={()=>email.length>5 && mdp.length>2 ? suite():null} style={{ height: 50, width: "70%", backgroundColor: email.length>5 && mdp.length>2 ? '#F63A6E' : "lightgray", alignSelf: "center", marginTop: 70, alignContent: "center", alignItems: "center", borderRadius: 25 }}>
                     <Text style={{ fontSize: 22, fontWeight: "bold", textAlign: "center", color: "white", marginTop: 12, alignSelf: "center" }}>SUIVANT</Text>
                 </TouchableOpacity>
             </View>
