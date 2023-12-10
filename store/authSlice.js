@@ -5,10 +5,12 @@ const initialState = {
     email: "",
     name: "",
     genre:"",
+    age:0,
     dateNaissance:[],
     interet:[],
     categorieRose:"",
     position:"",
+    password:"",
     phoneNumber:"",
     photo:[]
 }
@@ -22,6 +24,7 @@ const authSlice = createSlice({
             state.email = action.payload.email;
             state.isLoggedIn = action.payload.isLoggedIn;
             state.name = action.payload.userName; 
+            state.age = action.payload.age; 
 
             state.interet = action.payload.interet;
             state.genre = action.payload.genre;
@@ -38,11 +41,17 @@ const authSlice = createSlice({
             state.name = null;
             state.isLoggedIn = false;
         },
+        setLogin:(state,action)=>{
+            state.email = action.payload.email;
+            state.password = action.payload.password;
+            state.isLoggedIn = true;
+            console.log(action)
+        }
         
     }
 });
 
-export const { setSignIn, setSignOut } = authSlice.actions;
+export const { setSignIn, setSignOut,setLogin } = authSlice.actions;
 
 export const selectIsLoggedIn = (state) => state.userAuth.isLoggedIn;
 export const selectEmail = (state) => state.userAuth.email;

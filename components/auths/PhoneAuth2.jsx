@@ -6,10 +6,12 @@ import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { NavContext } from '../../App';
 
+import OTPInputView from '@twotalltotems/react-native-otp-input'
+
 const tab = [, 11, 1, 1, , 1, 1, 1]
 
 const PhoneAuth2 = ({ navigation, route }) => {
-    const [chiffre1, setChiffre1] = React.useState("")
+    const [code, setCode] = React.useState(0)
     const [chiffre2, setChiffre2] = React.useState("")
     const [chiffre3, setChiffre3] = React.useState("")
     const [chiffre4, setChiffre4] = React.useState("")
@@ -20,14 +22,14 @@ const PhoneAuth2 = ({ navigation, route }) => {
     const { validPhone, setValidPhone, phoneNumber } = useContext(NavContext)
 
     function suite() {
-        const tab = [chiffre1, chiffre2, chiffre3, chiffre4, chiffre5, chiffre6]
+      //  const tab = [chiffre1, chiffre2, chiffre3, chiffre4, chiffre5, chiffre6]
         //dispatch verfier phone
-        setValidPhone(tab)
+        setValidPhone(code)
         navigation.navigate(newLocal)
         //  handleVerification()
     }
     const newLocal = "EmailAuth1";
-    const [code, setCode] = useState(['', '', '', '']);
+ //   const [code, setCode] = useState(['', '', '', '']);
     const textInputs = Array.from({ length: 4 }, (_, index) => useRef(null));
     const handleCodeChange = (index, value) => {
         const newCode = [...code];
@@ -57,29 +59,12 @@ const PhoneAuth2 = ({ navigation, route }) => {
                 <View style={{ alignSelf: "center", flexDirection: "column", justifyContent: "flex-start", backgroundColor: "white", height: "95%", position: "absolute", top: "5%", width: WIDTH * 0.8, paddingLeft: 13, paddingTop: 10 }}>
                     <Text style={{ fontWeight: "bold", fontSize: 30 }}>Entre ton code</Text>
                     <Text style={{ fontWeight: "300", fontSize: 15, marginTop: 20 }}>{phoneNumber}</Text>
-                    <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 40 }}>
-                        {/*
-                            code.map((value, index)=>(
-                    <View  key={index} style={{ marginLeft: 1, borderBottomWidth: 3, borderColor: "gray", alignContent: "center", alignItems: "center", width: 30 }}>
+                    {/* <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 40 }}>
+                        
+                        
+                           
 
-                                <TextInput
-                               
-                                value={value}
-                                onChangeText={(text) => handleCodeChange(index, text)}
-                                ref={textInputs[index]}
-                                style={{ width: 15, fontSize: 20, textAlign: "center" }}
-                                keyboardType="numeric"
-                                placeholder=" "
-                                placeholderTextColor="gray"
-                                maxLength={1}
-    
-                            />
-                         
-                    </View>
-                       ))
-                            */}
-
-                        <View style={{ marginLeft: 1, borderBottomWidth: 3, borderColor: "gray", alignContent: "center", alignItems: "center", width: 30 }}>
+                         <View style={{ marginLeft: 1, borderBottomWidth: 3, borderColor: "gray", alignContent: "center", alignItems: "center", width: 30 }}>
 
                             <TextInput
 
@@ -160,8 +145,26 @@ const PhoneAuth2 = ({ navigation, route }) => {
                                 maxLength={1}
 
                             />
-                        </View>
+                        </View> 
+                    </View> */}
+                    <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 40 }}>
+
+                    <OTPInputView
+                        style={{ width: '90%', height: 200 }}
+                        pinCount={6}
+                        // code={this.state.code} //You can supply this prop or not. The component will be used as a controlled / uncontrolled component respectively.
+                        // onCodeChanged = {code => { this.setState({code})}}
+                        autoFocusOnLoad
+                        selectionColor='black'
+                        placeholderTextColor='black'
+                        codeInputFieldStyle={styles.underlineStyleBase}
+                        codeInputHighlightStyle={styles.underlineStyleHighLighted}
+                        onCodeFilled={(code) => {
+                            setCode(code)
+                        }}
+                    />
                     </View>
+
                     <View style={{ marginTop: 70 }}>
                         <Text style={{ fontWeight: "500", color: "gray" }}></Text>
                     </View>
@@ -188,4 +191,23 @@ const styles = StyleSheet.create({
         borderColor: "lightgray",
         borderWidth: StyleSheet.hairlineWidth,
     },
+    borderStyleBase: {
+        width: 30,
+        height: 45
+      },
+    
+      borderStyleHighLighted: {
+        borderColor: "#03DAC6",
+      },
+    
+      underlineStyleBase: {
+        width: 30,
+        height: 45,
+        borderWidth: 0,
+        borderBottomWidth: 1,
+      },
+    
+      underlineStyleHighLighted: {
+        borderColor: "#03DAC6",
+      },
 })

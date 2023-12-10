@@ -23,6 +23,7 @@ function App() {
 
   const [modalMenu, setModalMenu] = useState(false)
   const [name, setName] = useState("")
+  const [age, setAge]=useState(0)
   const [genre, setGenre]=useState("")
   const [dateNaissance, setDateNaissance]=useState([])
   const [interet, setInteret]=useState([])
@@ -30,9 +31,10 @@ function App() {
   const [position, setPosition]=useState("")
   const [photo, setPhoto]=useState([])
   const [phoneNumber, setPhoneNumber] = React.useState("")
-  const [validPhone,setValidPhone]=useState([])
+  const [validPhone,setValidPhone]=useState(0)  //code de verification entre par le user
   const [email, setEmail]=useState('')
   const [mdp, setMdp]=useState('')
+  const [errorEmailMdp, setErrorEmailMdp]=useState(false)
 
 
 
@@ -60,7 +62,8 @@ function App() {
     <Provider store={stare}>
       <NavContext.Provider value={{ modalMenu, setModalMenu,genre, setGenre,categorieRose,setCategorieRose,
       dateNaissance, setDateNaissance,interet, setInteret,position, setPosition,photo, setPhoto,phoneNumber, 
-      setPhoneNumber,validPhone,setValidPhone,email, setEmail,mdp, setMdp,name, setName
+      setPhoneNumber,validPhone,setValidPhone,email, setEmail,mdp, setMdp,name, setName,
+      errorEmailMdp, setErrorEmailMdp,age, setAge
       }}>
         <NavigationContainer>
           {

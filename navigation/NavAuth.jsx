@@ -10,6 +10,7 @@ import EmailAuth1 from '../components/auths/EmailAuth1';
 import Genre from '../components/auths/Genre';
 import CentreInteret from '../components/auths/CentreInteret';
 import Acceuil from '../components/auths/Acceuil';
+import Photo from '../components/auths/Photo';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +26,7 @@ export default function NavAuth() {
       <Stack.Screen name="EmailAuth1" component={EmailAuth1} options={{ headerShown: false }} />
       <Stack.Screen name="Genre" component={Genre} options={{ headerShown: false }} />
       <Stack.Screen name="CentreInteret" component={CentreInteret} options={{ headerShown: false }} />
+      <Stack.Screen component={Photo} name="Photo" options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 }

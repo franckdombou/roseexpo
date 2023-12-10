@@ -57,7 +57,7 @@ export default function TabLayout() {
         name="two"
         component={TwoScreen}
         options={{
-          title: 'Spark',
+          title: 'search',
           headerTitleStyle: { fontWeight: "bold", color: "#F63A6E", fontSize: 25 },
           tabBarIcon: ({ color }) => <FontAwesome name="search" color={color} size={28} style={{ marginBottom: -3 }} />,
         }}
