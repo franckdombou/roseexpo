@@ -13,7 +13,7 @@ const Genre = ({navigation, route}) => {
     const [validGenreH, setValidGenreH] = React.useState(false)
     const [validGenre, setValidGenre] = React.useState(false)
 
-    const {genre, setGenre} = useContext(NavContext)
+    const {genre, setGenre,age} = useContext(NavContext)
 
     function selectGenre(gr){
         setGenre(gr)
@@ -30,6 +30,12 @@ const Genre = ({navigation, route}) => {
     }
 
   const newLocal = "CentreInteret";
+
+  function suite(){
+  // console.log(age)
+    
+    navigation.navigate(newLocal)
+  }
 
     return (
         <SafeAreaView style={{ flex:1, backgroundColor: "white" }}>
@@ -49,7 +55,7 @@ const Genre = ({navigation, route}) => {
                         <Text style={{fontSize:20,fontWeight:"bold",textAlign:"center",marginTop:12,color:validGenreH?"white":"gray"}}>Homme</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity onPress={()=>navigation.navigate(newLocal)} style={{ height: 50, width: "70%", backgroundColor: validGenre ? '#F63A6E' : "lightgray", alignSelf: "center", marginTop: 70, alignContent: "center", alignItems: "center", borderRadius: 25 }}>
+                    <TouchableOpacity onPress={()=>suite()} style={{ height: 50, width: "70%", backgroundColor: validGenre ? '#F63A6E' : "lightgray", alignSelf: "center", marginTop: 70, alignContent: "center", alignItems: "center", borderRadius: 25 }}>
                     <Text style={{ fontSize: 22, fontWeight: "bold", textAlign: "center", color: "white", marginTop: 12, alignSelf: "center" }}>SUIVANT</Text>
                 </TouchableOpacity>
                 </View>

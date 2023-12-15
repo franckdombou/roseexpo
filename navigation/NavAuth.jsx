@@ -11,6 +11,7 @@ import Genre from '../components/auths/Genre';
 import CentreInteret from '../components/auths/CentreInteret';
 import Acceuil from '../components/auths/Acceuil';
 import Photo from '../components/auths/Photo';
+import Animation from '../components/auths/Animation';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,6 +19,7 @@ export default function NavAuth() {
 
   return (
     <Stack.Navigator>
+      <Stack.Screen component={Animation} name="Animation" options={{ headerShown: false }} />
       <Stack.Screen component={Acceuil} name="Acceuil" options={{ headerShown: false }} />
       <Stack.Screen component={PhoneAuth1} name="PhoneAuth1" options={{ headerShown: false }} />
       <Stack.Screen name="PhoneAuth2" component={PhoneAuth2} options={{ headerShown: false }} />

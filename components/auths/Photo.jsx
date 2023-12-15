@@ -93,7 +93,7 @@ const Photo = ({ navigation, route }) => {
 
     };
 
-    const {genre,dateNaissance,position, interet, email, phoneNumber, mdp,name,categorieRose,age}= useContext(NavContext)
+    const {genre,dateNaissance,position, interet, email, phoneNumber, mdp,name,categorieRose,age,ville,metier}= useContext(NavContext)
 
     const dispatch = useDispatch();
 
@@ -109,6 +109,8 @@ const Photo = ({ navigation, route }) => {
             position: position,
             phoneNumber:phoneNumber,
             categorieRose:categorieRose,
+            metier:metier,
+            ville:ville,
             photo: []
         };
 

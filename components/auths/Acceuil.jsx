@@ -24,11 +24,12 @@ const Acceuil = ({ navigation, route }) => {
 
     const [cont, setCont] = useState('');
     const [show, setShow] = useState(false);
-    const {errorEmailMdp, setErrorEmailMdp}= useContext(NavContext)
-    
+    const [mdpOublie, setMdpOublie] = useState(false);
+    const { errorEmailMdp, setErrorEmailMdp } = useContext(NavContext)
+
     const dispatch = useDispatch(setLogin);
 
-    function suite(values){
+    function suite(values) {
         const user = {
             isLoggedIn: true,
             email: values.email,
@@ -39,15 +40,15 @@ const Acceuil = ({ navigation, route }) => {
 
     return (
         <Formik
-            initialValues={{ email: '',password:'' }}
+            initialValues={{ email: '', password: '' }}
             validateOnMount={true}
             onSubmit={values => console.log(values.password)}
             validationSchema={loginSchema}
         >
-            {({ handleChange, handleBlur, handleSubmit, values,touched,errors,isValid }) => (
+            {({ handleChange, handleBlur, handleSubmit, values, touched, errors, isValid }) => (
                 <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1, backgroundColor: "white" }}>
                     <Image style={{ height: HEIGHT / 1.9, alignSelf: "center" }} resizeMethod="resize" source={require('../../assets/tinder.jpg')} />
-                    <Image style={{ height: HEIGHT / 2, position: "absolute", alignSelf: "center", top: "7%",paddingRight:100 }} resizeMethod="resize" source={require('../../assets/roselogo2.png')} />
+                    <Image style={{ height: HEIGHT / 2, position: "absolute", alignSelf: "center", top: "7%", paddingRight: 100 }} resizeMethod="resize" source={require('../../assets/logorougeremove.png')} />
 
                     {/**  */}
                     {/* <Image style={{ height: HEIGHT/2,alignSelf:"center"}} resizeMethod="resize"  source={require('../../assets/roselogo.jpeg')} /> */}
@@ -55,20 +56,20 @@ const Acceuil = ({ navigation, route }) => {
                         <View style={{ padding: 40 }}>
                             <Text style={{ color: "#F63A6E", fontSize: 25, fontFamily: "regular" }}>Bienvenue <FontAwesome name="heart" size={17} color="#F63A6E" /></Text>
                             <TouchableOpacity onPress={() => navigation.navigate('PhoneAuth1')}>
-                                <Text style={{ color: "gray",marginTop:10,marginBottom:10 }}>
+                                <Text style={{ color: "gray", marginTop: 10, marginBottom: 10 }}>
                                     Pas de compte ?
                                     <Text style={{ color: "#F63A6E", fontStyle: "italic" }}>{''} Inscris-toi !!!</Text>
                                 </Text>
                             </TouchableOpacity>
                             {/** MDP Email incorrect */}
-                            {errorEmailMdp && <Text style={{color:'red',fontSize:10,fontFamily:"regular",}}>Email ou mdp incorrect!!</Text>}
+                            {errorEmailMdp && <Text style={{ color: 'red', fontSize: 10, fontFamily: "regular", }}>Email ou mdp incorrect!!</Text>}
                             <KeyboardAvoidingView
                                 behavior={Platform.OS === "ios" ? "padding" : "height"}
                                 keyboardVerticalOffset={Platform.OS === "ios" ? 1 : 1}
                                 style={styles(isValid).bgK}
                             >
                                 <View style={{ marginTop: 7 }}>
-                                    <View style={{ marginBottom:10,}}>
+                                    <View style={{ marginBottom: 10, }}>
                                         <FloatingLabelInput
                                             label={'Email'}
                                             labelStyles={{ alignSelf: 'center', paddingTop: 20, color: "#000", }}
@@ -76,15 +77,15 @@ const Acceuil = ({ navigation, route }) => {
                                             keyboardType='email-address'
                                             togglePassword={show}
                                             containerStyles={{ borderColor: "#F63A6E", borderWidth: 2, height: 60, borderRadius: 20, alignContent: "center", padding: 10, }}
-                                          
+
                                             onChangeText={handleChange('email')}
                                             onBlur={handleBlur('email')}
                                             value={values.email}
                                         // style={{borderTopColor:'#F63A6E'}}
                                         />
-                                        {touched.email && errors.email && <Text style={{color:'red',fontSize:10,fontFamily:"regular"}}>{errors.email}</Text>}
+                                        {touched.email && errors.email && <Text style={{ color: 'red', fontSize: 10, fontFamily: "regular" }}>{errors.email}</Text>}
                                         <Text></Text>
-                                        
+
                                     </View>
                                     <View style={{ borderColor: "red" }}>
                                         <FloatingLabelInput
@@ -101,10 +102,10 @@ const Acceuil = ({ navigation, route }) => {
                                             onChangeText={handleChange('password')}
                                             onBlur={handleBlur('password')}
                                             value={values.password}
-                                        
-                                            // style={{borderTopColor:'#F63A6E'}}
+
+                                        // style={{borderTopColor:'#F63A6E'}}
                                         />
-                                         {touched.password && errors.password && <Text style={{color:'red',fontSize:10,fontFamily:"regular"}}>{errors.password}</Text>}
+                                        {touched.password && errors.password && <Text style={{ color: 'red', fontSize: 10, fontFamily: "regular" }}>{errors.password}</Text>}
                                         <Text></Text>
                                     </View>
                                 </View>
@@ -134,56 +135,57 @@ const Acceuil = ({ navigation, route }) => {
                         </View>
                     </View>
                 </ScrollView >
-                )}
-                </Formik>
-            )
-            }
+            )}
+        </Formik>
 
-            export default Acceuil
+    )
+}
 
-            const styles =(isValid)=> StyleSheet.create({
-                brandview: {
-                flex: 1,
-            justifyContent: "center",
-            alignItems: "center"
+export default Acceuil
+
+const styles = (isValid) => StyleSheet.create({
+    brandview: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center"
     },
-            brandviewText: {
-                color: "#ffffff",
-            fontSize: 40,
-            fontWeight: "bold",
-            textTransform: "uppercase"
+    brandviewText: {
+        color: "#ffffff",
+        fontSize: 40,
+        fontWeight: "bold",
+        textTransform: "uppercase"
     },
-            bottomView: {
-                flex: 1.5,
-            backgroundColor: "#ffffff",
-            bottom: 50,
-            borderTopStartRadius: 60,
-            borderTopRightRadius: 60,
-       // height: "40%"
+    bottomView: {
+        flex: 1.5,
+        backgroundColor: "#ffffff",
+        bottom: 50,
+        borderTopStartRadius: 60,
+        borderTopRightRadius: 60,
+        // height: "40%"
     },
-            bgK: {
-                flex: 1,
-            height: HEIGHT * 0.5,
+    bgK: {
+        flex: 1,
+        height: HEIGHT * 0.5,
         // paddingBottom:100
         //  backgroundColor:"red"
     },
-            forgot: {
-                height: 50,
-            marginTop: 20,
-            flexDirection: "row"
+    forgot: {
+        height: 50,
+        marginTop: 20,
+        flexDirection: "row"
     },
-            loginButton:{
-            backgroundColor:isValid?'#F63A6E':"gray",
-            alignSelf:'center',
-            width:WIDTH/2,
-            justifyContent:"center",
-            height:50,
-            borderRadius:30,
+    loginButton: {
+        backgroundColor: isValid ? '#F63A6E' : "gray",
+        alignSelf: 'center',
+        width: WIDTH / 2,
+        justifyContent: "center",
+        height: 50,
+        borderRadius: 30,
     },
-            shadow:{
-                shadowOffset:{width:1,height:10},
-            shadowOpacity:0.4,
-            shadowRadius:3,
-            elevation:15
+    shadow: {
+        shadowOffset: { width: 1, height: 10 },
+        shadowOpacity: 0.4,
+        shadowRadius: 3,
+        elevation: 15
     }
 })

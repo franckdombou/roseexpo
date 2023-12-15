@@ -24,6 +24,8 @@ import { Feather } from '@expo/vector-icons';
 const HEIGHT = Dimensions.get("screen").height
 const WIDTH = Dimensions.get("screen").width
 const im1 = 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/elon.png'
+import { MaterialIcons } from '@expo/vector-icons';
+
 
 const tabImage = [
     
@@ -54,7 +56,7 @@ const SWIPE_VELOCITY = 800;
 
 
 
-const CartePhoto = () => {
+const CartePhoto = (props) => {
     const user = users[0]
     //const sharedValue = useSharedValue(2)
     const translateX = useSharedValue(0);
@@ -81,7 +83,8 @@ const CartePhoto = () => {
         },
       });
 
-    const [current, setCurrent] = useState({ data: tabImage[0], index: 0 })
+   // const [current, setCurrent] = useState({ data: tabImage[0], index: 0 })
+    const [current, setCurrent] = useState({ data: props.card.images[0], index: 0 })
     // console.warn(sharedValue.value)
 
     const StatutWrapper = () => {
@@ -91,7 +94,7 @@ const CartePhoto = () => {
                 <View style={styles.container}>
                     <View style={styles.statusTabContainer}>
                         {
-                            tabImage.map((data, index) =>
+                            props.card.images.map((data, index) =>
                                 <View key={index} style={[styles.statusTab, { marginHorizontal: 0.5,borderRadius:5, backgroundColor: index == current.index ? "#F63A6E" : "gray" }]}>
                                 </View>
                             )}
@@ -107,18 +110,18 @@ const CartePhoto = () => {
                     else setCurrent({
                         ...current,
                         index: current.index - 1,
-                        data: tabImage[current.index - 1]
+                        data: props.card.images[current.index - 1]
                     })
                 }}
                     style={[styles.controller]}>
                     {/* <Text>LEFT</Text> */}
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => {
-                    if (current.index === tabImage.length - 1) { console.log(current) }
+                    if (current.index === props.card.images.length - 1) { console.log(current) }
                     else setCurrent({
                         ...current,
                         index: current.index + 1,
-                        data: tabImage[current.index + 1]
+                        data: props.card.images[current.index + 1]
                     })
                 }} style={[styles.controller, { right: 0, }]}>
                 </TouchableOpacity>
@@ -134,30 +137,30 @@ const CartePhoto = () => {
                 </Animated.View>
             </GestureHandlerRootView>
 
-            <View style={{ height: 100, width: WIDTH * 0.9, position: "absolute", bottom: 100, alignSelf: "center", flexDirection: "column", justifyContent: "space-between" }}>
+            <View style={{ height: 100, width: WIDTH * 0.9, position: "absolute", bottom: 160, alignSelf: "center", flexDirection: "column", justifyContent: "space-between" }}>
 
                 <View style={{ height: 30, width: 100, backgroundColor: "rgba(147, 250, 165,0.5)", borderRadius: 30, flexDirection: "row", alignContent: "center", alignItems: "center", paddingLeft: 10 }}>
                     <EvilIcons name="location" size={13} color="white" />
-                    <Text style={{ fontWeight: "bold", color: "#eee", textAlign: "center", fontSize: 10, marginLeft: 2 }}>A proximité</Text>
+                    <Text style={{ fontWeight: "bold", color: "#eee", textAlign: "center", fontSize: 10, marginLeft: 2 }}>{props.card.position} km</Text>
                 </View>
 
                 <View style={{ flexDirection: "row", }}>
-                    <Text style={{ fontWeight: "bold", fontSize: 28, color: "#eee" }}>Franck Lionnel</Text>
-                    <Text style={{ fontWeight: "500", fontSize: 28, color: "#eee", marginLeft: 5 }}>21</Text>
+                    <Text style={{ fontWeight: "bold", fontSize: 28, color: "#eee" }}>{props.card.username}</Text>
+                    <Text style={{ fontWeight: "500", fontSize: 28, color: "#eee", marginLeft: 5 }}>{props.card.age}</Text>
                 </View>
 
 
                 <View style={{ flexDirection: "row", }}>
                     <FontAwesome5 name="house-user" size={12} color="#eee" />
-                    <Text style={{ fontWeight: "bold", color: "#eee", textAlign: "center", fontSize: 10, marginLeft: 2 }}>Vit à Yaoundé</Text>
+                    <Text style={{ fontWeight: "bold", color: "#eee", textAlign: "center", fontSize: 10, marginLeft: 2 }}>Vit à {props.card.ville}</Text>
                 </View>
                 <View style={{ flexDirection: "row", }}>
-                    <EvilIcons name="location" size={13} color="white" />
-                    <Text style={{ fontWeight: "bold", color: "#eee", textAlign: "center", fontSize: 10, marginLeft: 2 }}>A 1km</Text>
+                    <MaterialIcons name="group-work" size={13} color="white" />
+                    <Text style={{ fontWeight: "bold", color: "#eee", textAlign: "center", fontSize: 10, marginLeft: 2 }}>{props.card.occupation}</Text>
                 </View>
             </View>
 
-            <View style={{ height: 80, width: WIDTH * 0.8, position: "absolute", bottom: 0, alignSelf: "center", flexDirection: "row", justifyContent: "space-between", margin: 15 }}>
+            <View style={{ height: 80, width: WIDTH * 0.8, position: "absolute", bottom: 50, alignSelf: "center", flexDirection: "row", justifyContent: "space-between", margin: 15 }}>
   
                 <TouchableOpacity style={{ height: 50, width: 50, borderWidth:1, borderRadius: 50, borderColor: "black", display:'flex', alignItems:'center', justifyContent:"center" }}>
                 <Feather name="refresh-ccw"  size={30} color="black" style={{display:'flex', alignItems:'center', justifyContent:"center"}} />
@@ -182,7 +185,8 @@ export default CartePhoto
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "white"
+       // backgroundColor: "white",
+        //width:WIDTH
     },
     image: {
         height: HEIGHT * 0.78,
@@ -209,7 +213,7 @@ const styles = StyleSheet.create({
         alignSelf: "center"
     },
     imageContainer: {
-        backgroundColor: "#ffff",
+       // backgroundColor: "white",
         flex: 1
     },
     imageStyle: {
