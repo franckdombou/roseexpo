@@ -15,6 +15,8 @@ import { useDispatch } from 'react-redux';
 import { setLogin } from '../../store/authSlice';
 import { useNavigation } from '@react-navigation/native';
 
+
+
 const loginSchema = Yup.object().shape({
     email: Yup.string().email('Entrez un email valide!').required('l\'adresse email est obligatoire!'),
     password: Yup.string().min(5, ({ min }) => `Au moins ${min} caractères`).required('Mot de pass obligatoire!')
@@ -28,17 +30,18 @@ const Acceuil = ({ navigation, route }) => {
     const [mdpOublie, setMdpOublie] = useState(false);
     const { errorEmailMdp, setErrorEmailMdp } = useContext(NavContext)
 
-    const dispatch = useDispatch(setLogin);
+    const dispatch = useDispatch();
 
     const nav = useNavigation()
+
     function suite(values) {
         const user = {
-            isLoggedIn: false,
+            isLoggedIn: true,
             email: values.email,
             password: values.password
         }
         dispatch(setLogin(user))
-      //  nav.navigate('Animation', {page:"tabLayout"})  ///MODIFIER
+        nav.navigate('Animation', {page:"tabLayout"})  ///MODIFIER
     }
 
   

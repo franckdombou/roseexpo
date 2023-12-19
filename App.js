@@ -17,6 +17,8 @@ import { stare } from './store/stare';
 // import Animation from './components/auths/Animation';
 import AppMain from './AppMain';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 // const Stack = createNativeStackNavigator();
 export const NavContext = createContext()
@@ -50,8 +52,9 @@ function App() {
 
   const [loginAnimation, setLoginAnimation] = useState(false)
 
+  const [userData, setUserData] = useState(null);
 
-  
+
 
 
   const [fontsLoaded] = useFonts({
@@ -72,19 +75,8 @@ function App() {
     return null
   }
 
-  // useEffect(()=>{
-  //   setTimeout(async()=>{
-  //     setLoginAnimation(false)
-  //   },3500)
-  // },[])
 
-  // const selectIsLoggedIn1 = useSelector(selectIsLoggedIn);
-// console.log("selectIsLoggedIn",useSelector((state) => state.userAuth.isLoggedIn))
-  // if(loginAnimation){
-  //   return(
-  //     <Animation />
-  //   )
-  // }
+ 
 
   
   return (
@@ -95,7 +87,7 @@ function App() {
         setPhoneNumber, validPhone, setValidPhone, email, setEmail, mdp, setMdp, name, setName,
         errorEmailMdp, setErrorEmailMdp, age, setAge,metier, setMetier,ville, setVille,
         distanceMax, setDistanceMax,ageMax, setAgeMax,boir, setBoir,fumer, setFumer,distanceMaxBoolean, setDistanceMaxBoolean,
-        ageMaxBoolean, setAgeMaxBoolean, loginAnimation, setLoginAnimation
+        ageMaxBoolean, setAgeMaxBoolean, loginAnimation, setLoginAnimation,userData, setUserData
       }}>
         <AppMain />
       </NavContext.Provider>

@@ -115,6 +115,7 @@ const Photo = ({ navigation, route }) => {
         };
 
         dispatch(setSignIn(user))
+        console.log("user dans PHOTO", user)
         nav.navigate('Animation', {page:"tabLayout"})  ///MODIFIER
     }
 

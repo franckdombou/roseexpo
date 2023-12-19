@@ -1,4 +1,42 @@
 import { createSlice } from "@reduxjs/toolkit"
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const storeDataValue = async (value) => {
+    try {
+      await AsyncStorage.setItem('my', value);
+    } catch (e) {
+      // saving error
+    }
+    console.log("storeDataValue",value)
+  };
+
+  const storeDataObject = async (value) => {
+    try {
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem('user', jsonValue);
+      console.log("storeDataObjetc",jsonValue)
+    } catch (e) {
+      // saving error
+    }
+    
+  };
+
+  const mergeUsers = async (value) => {
+    try {
+      //save first user
+      await AsyncStorage.setItem('@MyApp_user', JSON.stringify(value))
+  
+      // merge USER_2 into saved USER_1
+        //  await AsyncStorage.mergeItem('@MyApp_user', JSON.stringify(USER_2))
+  
+      // read merged item
+      const currentUser = await AsyncStorage.getItem('@MyApp_user')
+  
+     console.log("currentUser",currentUser)
+    }catch(e){}
+  }
+
+
 
 const initialState = {
     isLoggedIn: false,
@@ -55,6 +93,9 @@ const authSlice = createSlice({
             state.fumes=false;
             state.ageMax=18;
             state.ageMaxBoolean=false;
+
+
+            mergeUsers((action.payload))
         },
         setSignOut: (state) => {
             state.email = null;
@@ -64,7 +105,9 @@ const authSlice = createSlice({
         setLogin:(state,action)=>{
             state.email = action.payload.email;
             state.password = action.payload.password;
-            state.isLoggedIn = true;
+            state.isLoggedIn = action.payload.isLoggedIn;
+            storeDataObject(action.payload)
+            mergeUsers(action.payload)
             console.log("action",action)
             console.log("state",state)
         },
@@ -75,13 +118,17 @@ const authSlice = createSlice({
             state.ageMaxBoolean = action.payload.ageMaxBoolean;
             state.interet = action.payload.interet;
             state.categorieRose = action.payload.categorieRose;
-          //  console.log(action)
+          //  storeDataValue(action)
+            console.log(action)
+        },
+        test:(state, action)=>{
+            storeDataValue("valaba")
         }
         
     }
 });
 
-export const { setSignIn, setSignOut,setLogin,validerParametre } = authSlice.actions;
+export const { setSignIn, setSignOut,setLogin,validerParametre,test } = authSlice.actions;
 
 export const selectIsLoggedIn = (state) => state.userAuth.isLoggedIn;
 
