@@ -59,7 +59,7 @@ export default function OneScreen() {
 
             (
              
-              <CartePhoto card={card} />
+              <CartePhoto  card={card} />
               
             ) : (
               <View style={styles.Infos2}>

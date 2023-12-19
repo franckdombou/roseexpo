@@ -60,10 +60,10 @@ const VueNotifs3 = ({ route, navigation }) => {
                     <Text style={[styles.createdMes, { alignSelf: !isMyMsg() ? "flex-start" : "flex-end" }]}>
                         {dayjs(message.created).format("HH:mm A")}
                     </Text>
-                    {!isMessageRead ? (
+                    {isMessageRead ? (
                         <MaterialCommunityIcons style={{ alignSelf: isMyMsg() ? "flex-end" : "flex-start" }} name="read" size={16} color="#5bb6c9" />
                     ) : (
-                        <MaterialCommunityIcons style={{ alignSelf: isMyMsg() ? "flex-end" : "flex-start" }} name="check" size={16} color="grey" />
+                        <MaterialCommunityIcons style={{ alignSelf: isMyMsg() ? "flex-end" : "flex-start" }} name="check" size={16} color="#5bb6c9" />
                     )}
                 </View>
                 {/* <Text style={[styles.createdMes,{alignSelf:!isMyMsg()? "flex-start":"flex-end"}]}>{message.created.slice(11, 16)}</Text> */}
@@ -94,10 +94,10 @@ const VueNotifs3 = ({ route, navigation }) => {
 
                 <ImageBackground source={require('../../assets/watzapp.png')} style={styles.bg}>
                     {
-                        isMessage ?
+                        !isMessage ?
                             <FlatList
                                 data={messages}
-                                renderItem={(({ item }) => <Mes message={item} />)}
+                                renderItem={(({ item }) => <Mes  message={item} />)}
                                 style={styles.list}
                                 inverted
 

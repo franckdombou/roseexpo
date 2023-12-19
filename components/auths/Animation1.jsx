@@ -3,20 +3,19 @@ import { Button, StyleSheet, View } from 'react-native';
 import LottieView from 'lottie-react-native';
 import { useNavigation, useRoute } from '@react-navigation/native'
 
-export default function Animation({ navigation, route }) {
+export default function Animation1({ navigation, route }) {
   const animation = useRef(null);
 
   const rout = useRoute();
-  const { page } = route.params || {};
-  console.log("Animation",page)
+  const { page } = rout.params || {};
 
   const nav = useNavigation()
 
   useEffect(()=>{
     animation.current?.play();
      setTimeout(async()=>{
-    if(page){navigation.replace(page)}
-  //  navigation.navigate('Acceuil')
+   // if(page){nav.navigate(page)}
+    navigation.navigate('Acceuil')
    },5000)
    },[])
 

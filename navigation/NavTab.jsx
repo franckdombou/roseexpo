@@ -1,7 +1,7 @@
 // import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Pressable, SafeAreaView, useColorScheme } from 'react-native';
 import { COLORS } from '../assets/constants';
-import { StyleSheet, Text, View,Dimensions } from 'react-native'
+import { StyleSheet, Text, View, Dimensions } from 'react-native'
 import React, { useContext } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
@@ -9,7 +9,7 @@ import { FontAwesome } from '@expo/vector-icons';
 const HEIGHT = Dimensions.get("screen").height
 const WIDTH = Dimensions.get("screen").width
 
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Link } from '@react-navigation/native';
 import { NavContext } from '../App';
@@ -31,6 +31,17 @@ export default function TabLayout() {
   const colorScheme = useColorScheme();
   const modalMenu = useContext(NavContext)?.modalMenu
   const setModalMenu = useContext(NavContext)?.setModalMenu
+
+  const nav = useNavigation()
+
+  function suite() {
+    if (setModalMenu) {
+      setModalMenu(!modalMenu);
+      console.log("NAVTAB",nav)
+      nav.navigate('Animation', { page: "tabLayout" })  ///MODIFIER
+    }
+  }
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -43,14 +54,12 @@ export default function TabLayout() {
           title: 'spark',
           headerTitleStyle: { fontWeight: "bold", color: "#F63A6E", fontSize: 25 },
           tabBarIcon: ({ color }) => <FontAwesome name="tint" color={color} size={28} style={{ marginBottom: -3 }} />,
-           headerRight: () => (
-           
-            <Pressable onPress={()=>{if (setModalMenu) {
-              setModalMenu(!modalMenu);
-            }console.log(modalMenu)}}>
-                <AntDesign style={{alignSelf:"center", marginRight:20,marginTop:4}} name="menu-fold" size={24} color="gray" />
+          headerRight: () => (
+
+            <Pressable onPress={() => suite()}>
+              <AntDesign style={{ alignSelf: "center", marginRight: 20, marginTop: 4 }} name="menu-fold" size={24} color="gray" />
             </Pressable>
-           ),
+          ),
         }}
       />
       <Tab.Screen
@@ -67,8 +76,8 @@ export default function TabLayout() {
         name="three"
         component={ThreeScreen}
         options={{
-          headerShown:false,
-        tabBarIcon: ({ color }) => <FontAwesome name="wechat" color={color} size={28} style={{ marginBottom: -3 }} />,
+          headerShown: false,
+          tabBarIcon: ({ color }) => <FontAwesome name="wechat" color={color} size={28} style={{ marginBottom: -3 }} />,
         }}
       />
 
@@ -82,12 +91,12 @@ export default function TabLayout() {
           header: () => (
             <React.Fragment>
               <SafeAreaView style={{ height: 25, backgroundColor: "white", width: WIDTH }}></SafeAreaView>
-              <SafeAreaView style={{ height: 35, backgroundColor: "white", width: WIDTH , flexDirection: "row", justifyContent: "space-between", marginLeft: 10, }}>
-                <View style={{ height: 25, width: "auto",marginTop:9 }}>
-                  <Text style={{ fontWeight: "bold", color: "#F63A6E", fontSize: 25,marginLeft:10 }}>Spark</Text>
+              <SafeAreaView style={{ height: 35, backgroundColor: "white", width: WIDTH, flexDirection: "row", justifyContent: "space-between", marginLeft: 10, }}>
+                <View style={{ height: 25, width: "auto", marginTop: 9 }}>
+                  <Text style={{ fontWeight: "bold", color: "#F63A6E", fontSize: 25, marginLeft: 10 }}>Spark</Text>
                 </View>
-                <View style={{width: 85,flexDirection:"row",justifyContent:"space-between",marginTop:9 }}>
-                      <Ionicons style={{marginLeft:10,}} name="settings-sharp" size={25} color="gray" />
+                <View style={{ width: 85, flexDirection: "row", justifyContent: "space-between", marginTop: 9 }}>
+                  <Ionicons style={{ marginLeft: 10, }} name="settings-sharp" size={25} color="gray" />
                 </View>
               </SafeAreaView>
             </React.Fragment>

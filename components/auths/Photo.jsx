@@ -115,7 +115,7 @@ const Photo = ({ navigation, route }) => {
         };
 
         dispatch(setSignIn(user))
-        nav.navigate('tabLayout')
+        nav.navigate('Animation', {page:"tabLayout"})  ///MODIFIER
     }
 
     const [image, setImage] = useState(null);

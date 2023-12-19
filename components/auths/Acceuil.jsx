@@ -13,6 +13,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { NavContext } from '../../App';
 import { useDispatch } from 'react-redux';
 import { setLogin } from '../../store/authSlice';
+import { useNavigation } from '@react-navigation/native';
 
 const loginSchema = Yup.object().shape({
     email: Yup.string().email('Entrez un email valide!').required('l\'adresse email est obligatoire!'),
@@ -29,14 +30,20 @@ const Acceuil = ({ navigation, route }) => {
 
     const dispatch = useDispatch(setLogin);
 
+    const nav = useNavigation()
     function suite(values) {
         const user = {
-            isLoggedIn: true,
+            isLoggedIn: false,
             email: values.email,
             password: values.password
         }
         dispatch(setLogin(user))
+      //  nav.navigate('Animation', {page:"tabLayout"})  ///MODIFIER
     }
+
+  
+
+
 
     return (
         <Formik

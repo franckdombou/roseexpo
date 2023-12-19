@@ -2,18 +2,18 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
     isLoggedIn: false,
-    email: "",
-    name: "",
-    genre:"",
+    email: "user",
+    name: "user",
+    genre:"H",
     age:0,
-    dateNaissance:[],
+    dateNaissance:"23/11/2000",
     interet:[],
     categorieRose:"",
     position:"",
-    ville:"",
-    metier:"",
-    password:"",
-    phoneNumber:"",
+    ville:"Yde",
+    metier:"Prof",
+    password:"12345678",
+    phoneNumber:"+23798219893",
     photo:[],
     distanceMax:1000,
     distanceMaxBoolean:false,
@@ -21,6 +21,10 @@ const initialState = {
     fumes:false,
     ageMax:18,
     ageMaxBoolean:false,
+}
+
+const LoginState={
+    loginAnimation:false
 }
 
 const authSlice = createSlice({
@@ -61,7 +65,8 @@ const authSlice = createSlice({
             state.email = action.payload.email;
             state.password = action.payload.password;
             state.isLoggedIn = true;
-          //  console.log(action)
+            console.log("action",action)
+            console.log("state",state)
         },
         validerParametre:(state,action)=>{
             state.distanceMax = action.payload.distanceMax;
@@ -70,7 +75,7 @@ const authSlice = createSlice({
             state.ageMaxBoolean = action.payload.ageMaxBoolean;
             state.interet = action.payload.interet;
             state.categorieRose = action.payload.categorieRose;
-            console.log(action)
+          //  console.log(action)
         }
         
     }
@@ -79,8 +84,11 @@ const authSlice = createSlice({
 export const { setSignIn, setSignOut,setLogin,validerParametre } = authSlice.actions;
 
 export const selectIsLoggedIn = (state) => state.userAuth.isLoggedIn;
+
+
 export const selectEmail = (state) => state.userAuth.email;
 export const selectName = (state) => state.userAuth.name;
+export const selectAge = (state) => state.userAuth.age;
 export const selectGenre = (state) => state.userAuth.genre;
 export const selectDateNaissance = (state) => state.userAuth.dateNaissance;
 export const selectInteret = (state) => state.userAuth.interet;
